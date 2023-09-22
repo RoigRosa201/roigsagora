@@ -1,29 +1,47 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import db from './assets/db.json'
 
 
 function App() {
   const [results, setResults] = useState ([]);
     
   useEffect(() => {
-      fetch("http://localhost:3001/categories")
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setResults(data);
-      })
-
+    //fetch("/categories")
+     // fetch("http://localhost:3001/categories")
+      // fetch("data")
+      // .then(response => response.json())
+      // .then(data => {
+      //   console.log(data);
+      //   setResults(data);
+      // })
+      ///console.log(data)
+      setResults(db.categories)
     }, [])
   return (
-    
-    
-    <div className="App">
+    <>
+    <header> My Store </header>
+
+  <section>
+    <nav>
       {
         results.map(d => (
           <div key={d.id}>{d.title}</div>
         ))
-}
-      </div>
+      }
+        </nav>
+      <article>
+        main area
+      </article>
+      
+      </section>
+      
+      
+      <footer>
+        footer
+      </footer>
+
+  </>
   );
 }
 
