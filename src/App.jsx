@@ -1,70 +1,49 @@
-import { useState, useEffect } from 'react';
-import './App.css';
-import db from './assets/db.json';
-import Category from './components/Category';
+import React from 'react';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom'; // Import Routes
+import ProductList from './components/ProductList';
+import ProductDetail from './components/ProductDetail';
+import Cart from './components/Cart';
+import Checkout from './components/Checkout';
+
+import Login from './components/Login';
+import Logout from './components/Logout';
 
 function App() {
-  const [categories, setCategories] = useState ([]);
-  const [products, setProducts] = useState ([]);
-  
-  useEffect(() => {
-    //fetch("/categories")
-     // fetch("http://localhost:3001/categories")
-      // fetch("data")
-      // .then(response => response.json())
-      // .then(data => {
-      //   console.log(data);
-      //   setResults(data);
-      // })
-      ///console.log(data)
-      setCategories(db.categories)
-      setProducts(db.products)
-    }, [])
-
-    const handleCategoryClick = id => { 
-      alert('id:' +id);
-    }
-
-    const renderCategories = () => {
-      return categories.map(c =>
-        <Category key={c.id} id={c.id} title={c.title}  onCategoryClick={() => handleCategoryClick(c.id)}/>
-      );
-    }
-
-    const renderProducts = () => {
-      return products.map(p =>
-        <div key={p.id}>{p.title}</div>
-      )
-    }
-
   return (
-    <>
-    <header> My Store </header>
-
-  <section>
-    <nav>
-      
-        { categories && renderCategories() }
-      
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/cart">Cart</Link>
+            </li>
+            <li>
+              <Link to="/logout">Logout</Link>
+            </li>
+          </ul>
         </nav>
-      <article>
-        <h1>Products</h1>
-        { products && renderProducts() }
-      </article>
-      
-      </section>
-      
-      
-      <footer>
-        footer
-      </footer>
 
-  </>
+        <Routes>  {/* Wrap all Route components inside Routes */}
+          <Route path="/" element={<ProductList />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+         
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
+        
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
-
 export default App;
-
 
 
