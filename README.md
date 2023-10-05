@@ -2,7 +2,7 @@
 
 
 
-NETLIFY: https://app.netlify.com/sites/elegant-lebkuchen-b1ab86/overview
+NETLIFY: https://stupendous-stroopwafel-4c0c51.netlify.app/
 
 
 
